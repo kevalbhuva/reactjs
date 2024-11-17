@@ -1,0 +1,107 @@
+/* SignUp.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.form-field input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-field input:focus {
+  border-color: #66afe9;
+  outline: none;
+}
+
+.error {
+  color: #e74c3c;
+  margin-top: 5px;
+}
+
+.plusbutton, .minusbutton {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.plusbutton {
+  background-color: #28a745;
+}
+
+.minusbutton {
+  background-color: #dc3545;
+}
+
+.plusbutton:hover, .minusbutton:hover {
+  opacity: 0.8;
+}
+
+button[type="submit"] {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+address div {
+  margin-bottom: 10px;
+}
+
+address label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333333;
+}
+
+address input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+address input:focus {
+  border-color: #66afe9;
+  outline: none;
+}

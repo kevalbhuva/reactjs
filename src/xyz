@@ -1,0 +1,220 @@
+// import { useNavigate } from "react-router-dom"
+// import { useFormik } from "formik"
+// import * as yup from "yup"
+// import './Dashboard.css';
+// import { useEffect, useState } from "react";
+// const Dashboard = () => {
+//     const [count, setCount] = useState(0)
+//     const [no, setNo] = useState(0)
+//     const [addresses, setAddresses] = useState([])
+//     const address = { 
+//         street: "",
+//         city: "",
+//         state: ""
+//     }
+//     // useEffect(() => {
+//     //     console.log("called first")
+//     // })
+//     useEffect(() => {
+//         addAddress()
+//     }, [])
+//     console.log(addresses);
+//     const addAddress = () => {
+//         const newAddresses = addresses
+//         newAddresses.push(address)
+//         setAddresses([...newAddresses])
+//     }
+//     const removeAddress = (index) => {
+//         if(index != 0) {
+//             const newAddresses = addresses
+//             newAddresses.splice(index, 1)
+//             setAddresses([...newAddresses])
+//         }
+//     }
+//     const REGI_SCHEMA = yup.object().shape({
+//         fname: yup.string().trim().required("Please enter fname"),
+//         lname: yup.string().trim().required("Please enter lname"),
+//         email: yup.string().trim().email("Please enter valid email").required("Please enter email"),
+//         password: yup.string().trim().min(5).max(8).required("Please enter password")
+//     })
+//     const navigate = useNavigate()
+//     const formik = useFormik({
+//         initialValues: {
+//             fname: "",
+//             lname: "",
+//             email: "",
+//             password: ""
+//         },
+//         // validationSchema: REGI_SCHEMA,
+//         validate: (values) => {
+//             const error = {}
+//             const emailval = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+//             const name = /[A-za-z]/
+//             if(!values.fname) {
+//                 error.fname = "Please enter fname"
+//             }if(!name.test(values.fname)){
+//                 error.fname = "Please enter valid fname"
+//             }
+//             if(!values.lname){
+//                 error.lname = "Please enter lname"
+//             }if(!name.test(values.lname)){
+//                 error.lname = "Please enter valid lname"
+//             }
+//             if(!values.email){
+//                 error.email = "Please enter email"
+//             }if (!emailval.test(values.email)) {
+//                 error.email = 'Invalid email address';
+//             }
+//             if(!values.password){
+//                 error.password = "Please enter password"
+//             }else{
+//                 if(values.password.length < 6){
+//                     error.password = "Please Enter minimum 6 char"
+//                 }
+//                 if(values.password.length > 8){
+//                     error.password = "Please Enter Maximum 8 char"
+//                 }
+//             }
+            
+            
+//             return error
+//         },
+//         onSubmit: (values, { resetForm, setSubmitting}) => {
+//             console.log(values, addresses, "=====values");
+//             setTimeout(() => {
+//                 setSubmitting(false)
+//                 resetForm()
+//             }, 3000);
+            
+//         }
+//     })
+//     console.log(formik.isSubmitting)
+//     return (
+//         <div className="dashboard-container">
+//       <h1>Dashboard</h1>
+//       <button className="logout-button" onClick={() => setNo(no + 1)}>
+//         Logout
+//       </button>
+//       <form onSubmit={formik.handleSubmit} className="form-container">
+//         <div className="form-group">
+//           <label>First Name:</label>
+//           <input 
+//             type="text" 
+//             name="fname" 
+//             value={formik.values.fname}
+//             onChange={formik.handleChange}   
+//             onBlur={formik.handleBlur}  
+//             disabled={formik.isSubmitting}
+//             className={formik.errors.fname && formik.touched.fname ? 'input-error' : ''}
+//           />
+//           {formik.touched.fname && formik.errors.fname ? <p className="error-text">{formik.errors.fname}</p> : null}
+//         </div>
+//         <div className="form-group">
+//           <label>Last Name:</label>
+//           <input 
+//             type="text" 
+//             name="lname" 
+//             value={formik.values.lname}
+//             onChange={formik.handleChange} 
+//             className={formik.errors.lname && formik.touched.lname ? 'input-error' : ''}
+//           />
+//           {formik.touched.lname && formik.errors.lname ? <p className="error-text">{formik.errors.lname}</p> : null}
+//         </div>
+//         <div className="form-group">
+//           <label>Email:</label>
+//           <input 
+//             type="text" 
+//             name="email" 
+//             value={formik.values.email}
+//             onChange={formik.handleChange}     
+//             className={formik.errors.email && formik.touched.email ? 'input-error' : ''}
+//           />
+//           {formik.touched.email && formik.errors.email ? <p className="error-text">{formik.errors.email}</p> : null}
+//         </div>
+//         <div className="form-group">
+//           <label>Password:</label>
+//           <input 
+//             type="password" 
+//             name="password" 
+//             value={formik.values.password}
+//             onChange={formik.handleChange}     
+//             className={formik.errors.password && formik.touched.password ? 'input-error' : ''}
+//           />
+//           {formik.touched.password && formik.errors.password ? <p className="error-text">{formik.errors.password}</p> : null}
+//         </div>
+//         <div>
+//             {addresses.map((add, index) => {
+//                 return (
+//                     <div>
+//                         <div>
+//                             <label>Address {index + 1}</label>
+//                         </div>
+//                         <div>
+//                             <div>
+//                                 <label>Enter Street:</label>
+//                                 <input 
+//                                     type="text" 
+//                                     name="street" 
+//                                     value={add.street}
+//                                     onChange={(event) => {
+//                                         const newAddresses = addresses
+//                                         newAddresses[index].street = event.target.value
+//                                         console.log(newAddresses);
+//                                         setAddresses([...newAddresses])
+//                                     }}
+//                                 />
+//                             </div>
+//                             <div>
+//                                 <label>Enter City:</label>
+//                                 <input 
+//                                     type="text" 
+//                                     name="city" 
+//                                     value={add.city}
+//                                     onChange={(event) => {
+//                                         const newAddresses = addresses
+//                                         newAddresses[index].city = event.target.value
+//                                         setAddresses([...newAddresses])
+//                                     }}
+//                                 />
+//                             </div>
+//                             <div>
+//                                 <label>Enter State:</label>
+//                                 <input 
+//                                     type="text" 
+//                                     name="state" 
+//                                     value={add.state}
+//                                     onChange={(event) => {
+//                                         const newAddresses = addresses
+//                                         newAddresses[index].state = event.target.value
+//                                         setAddresses([...newAddresses])
+//                                     }}
+//                                 />
+//                             </div>
+//                         </div>
+//                         <div>
+//                             {index == (addresses.length - 1) && <button
+//                                 onClick={() => {
+//                                     addAddress()
+//                                 }}
+//                             >+</button>}
+//                             <button
+//                                 onClick={() => {
+//                                     removeAddress(index)
+//                                 }}
+//                             >-</button>
+//                         </div>
+//                     </div>
+//                 )
+//             })}
+//         </div>
+//         <div className="form-group">
+//           <button type="submit" disabled={formik.isSubmitting}>
+//             {formik.isSubmitting ? Processing... : Submit}
+//           </button>
+//         </div>
+//       </form>
+//     </div>
+//     )
+// }
+
+// export default Dashboard
